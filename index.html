@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroLocal</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+/* HEADER */
+header{
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* NAV */
+nav{
+    background:#1b5e20;
+    padding:10px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:70px 20px;
+    background:url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854') center/cover;
+    color:white;
+}
+
+.hero h2{
+    font-size:40px;
+    color:#90EE90;
+    text-shadow:2px 2px 5px black;
+}
+
+.hero p{
+    font-size:20px;
+    color:#98FB98;
+    text-shadow:1px 1px 4px black;
+}
+
+/* CONTAINER */
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding:40px 0;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.card h3{
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+/* BOX SISTEMA */
+.box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* INPUTS */
+input{
+    width:100%;
+    max-width:400px;
+    padding:10px;
+    margin:5px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+/* BUTTON */
+.btn{
+    padding:10px 15px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.btn:hover{
+    background:#1b5e20;
+}
+
+/* LISTAS */
+ul{ margin-top:15px; }
+li{ margin-bottom:8px; }
+
+/* MATCH */
+.match{
+    background:#e8f5e9;
+    padding:10px;
+    margin-top:5px;
+    border-left:4px solid #2e7d32;
+}
+
+/* FOOTER */
+footer{
+    background:#1b5e20;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌱 AgroLocal</h1>
+    <p>Conectando agricultores familiares e compradores</p>
+</header>
+
+<nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#beneficios">Benefícios</a>
+    <a href="#sistema">Plataforma</a>
+    <a href="#contato">Contato</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h2>Do Campo para Sua Mesa</h2>
+    <p>Alimentos frescos, locais e sustentáveis</p>
+</section>
+
+<!-- SOBRE -->
+<section class="container" id="sobre">
+    <h2>Sobre o Projeto</h2>
+    <br>
+    <p>
+        O AgroLocal conecta produtores rurais e consumidores,
+        facilitando a venda direta de alimentos frescos e promovendo
+        uma economia mais justa e sustentável.
+    </p>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="container" id="beneficios">
+    <h2>Benefícios</h2>
+    <br>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>👨‍🌾 Agricultores</h3>
+            <p>Venda direta sem intermediários</p>
+        </div>
+
+        <div class="card">
+            <h3>🛒 Compradores</h3>
+            <p>Alimentos mais frescos e baratos</p>
+        </div>
+
+        <div class="card">
+            <h3>🌍 Meio Ambiente</h3>
+            <p>Menos transporte e menos desperdício</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- SISTEMA -->
+<section class="container" id="sistema">
+
+    <!-- PRODUTORES -->
+    <div class="box">
+        <h2>👨‍🌾 Produtores</h2>
+
+        <input id="produtorNome" placeholder="Nome do produtor">
+        <input id="produtorProduto" placeholder="Produto">
+
+        <button class="btn" onclick="addProdutor()">Cadastrar</button>
+        <button class="btn" onclick="clearProdutores()">Limpar</button>
+
+        <input id="buscaProd" placeholder="Buscar produto..." oninput="renderProdutores()">
+
+        <ul id="listaProdutores"></ul>
+    </div>
+
+    <!-- COMPRADORES -->
+    <div class="box">
+        <h2>🛒 Compradores</h2>
+
+        <input id="compradorNome" placeholder="Nome do comprador">
+        <input id="compradorInteresse" placeholder="O que deseja comprar?">
+
+        <button class="btn" onclick="addComprador()">Cadastrar</button>
+        <button class="btn" onclick="clearCompradores()">Limpar</button>
+
+        <ul id="listaCompradores"></ul>
+    </div>
+
+</section>
+
+<footer id="contato">
+    <h3>AgroLocal</h3>
+    <p>Projeto Agrinho 2026 — Conectando campo e cidade</p>
+</footer>
+
+<script>
+
+/* STORAGE */
+let produtores = JSON.parse(localStorage.getItem("produtores")) || [];
+let compradores = JSON.parse(localStorage.getItem("compradores")) || [];
+
+/* PRODUTORES */
+function addProdutor(){
+    const nome = document.getElementById("produtorNome").value.trim();
+    const produto = document.getElementById("produtorProduto").value.trim();
+
+    if(!nome || !produto) return alert("Preencha tudo!");
+
+    produtores.push({nome, produto});
+    localStorage.setItem("produtores", JSON.stringify(produtores));
+
+    document.getElementById("produtorNome").value = "";
+    document.getElementById("produtorProduto").value = "";
+
+    renderProdutores();
+}
+
+function renderProdutores(){
+    const lista = document.getElementById("listaProdutores");
+    const filtro = document.getElementById("buscaProd").value?.toLowerCase() || "";
+
+    lista.innerHTML = "";
+
+    produtores
+    .filter(p => p.produto.toLowerCase().includes(filtro))
+    .forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.nome} - ${p.produto}`;
+        lista.appendChild(li);
+    });
+}
+
+function clearProdutores(){
+    produtores = [];
+    localStorage.removeItem("produtores");
+    renderProdutores();
+}
+
+/* COMPRADORES */
+function addComprador(){
+    const nome = document.getElementById("compradorNome").value.trim();
+    const interesse = document.getElementById("compradorInteresse").value.trim();
+
+    if(!nome || !interesse) return alert("Preencha tudo!");
+
+    compradores.push({nome, interesse});
+    localStorage.setItem("compradores", JSON.stringify(compradores));
+
+    document.getElementById("compradorNome").value = "";
+    document.getElementById("compradorInteresse").value = "";
+
+    renderCompradores();
+}
+
+function renderCompradores(){
+    const lista = document.getElementById("listaCompradores");
+    lista.innerHTML = "";
+
+    compradores.forEach(c => {
+
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${c.nome}</strong> quer: ${c.interesse}`;
+
+        const matches = produtores.filter(p =>
+            p.produto.toLowerCase().includes(c.interesse.toLowerCase())
+        );
+
+        if(matches.length){
+            li.innerHTML += `<div class="match">
+                ✔ Encontrados: ${matches.map(m => m.nome + " (" + m.produto + ")").join(", ")}
+            </div>`;
+        } else {
+            li.innerHTML += `<div class="match">⚠ Nenhum produtor encontrado</div>`;
+        }
+
+        lista.appendChild(li);
+    });
+}
+
+function clearCompradores(){
+    compradores = [];
+    localStorage.removeItem("compradores");
+    renderCompradores();
+}
+
+/* INIT */
+renderProdutores();
+renderCompradores();
+
+</script>
+
+</body>
+</html>
